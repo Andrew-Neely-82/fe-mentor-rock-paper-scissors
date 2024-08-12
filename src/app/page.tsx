@@ -1,5 +1,6 @@
 "use client";
 
+import GameBoard from "./components/scoreBoard/gameBoard/GameBoard";
 import ScoreBoard from "./components/scoreBoard/ScoreBoard";
 import styles from "./page.module.scss";
 import { useState } from "react";
@@ -44,14 +45,14 @@ const Home = () => {
   return (
     <main className={styles.main}>
       <ScoreBoard score={score} />
-      <p>{result}</p>
+      {/* <p>{result}</p> */}
       {/* <div>
         <button onClick={handleWin}>Win Test</button>
         <button onClick={handleDraw}>Draw Test</button>
         <button onClick={handleLose}>Lose Test</button>
         <button onClick={handleResetScore}>Reset Test</button>
       </div> */}
-      
+      <GameBoard />
 
       <footer className={styles.footer}>
         <button className={styles.footerButton}>RULES</button>

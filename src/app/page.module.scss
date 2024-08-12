@@ -16,15 +16,14 @@ $desktop: 1366px;
 $mobile: 50rem;
 
 .main {
-  position: relative;
   display: grid;
-  place-items: center;
+  grid-template-rows: repeat(2, auto);
   max-width: $desktop;
-  height: 100%;
   margin: auto;
 }
 
 .scoreboardContainer {
+  height: fit-content;
   border: 2px solid $header-outline;
   border-radius: 1rem;
   padding: 1.5rem;
@@ -34,6 +33,95 @@ $mobile: 50rem;
     line-height: 1.75rem;
     margin: 0;
   }
+}
+
+// * GameBoard
+
+.gameBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  // min-width: 100%;
+  margin: auto;
+  margin-top: 3rem;
+
+  .topChoices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    width: 40rem;
+  }
+
+  .svgContainer {
+    position: absolute;
+    // inset: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -10;
+  }
+}
+
+// * Choice Icons
+
+.btn {
+  border-radius: 100vw;
+  border: none;
+  background: none;
+  padding: 2px;
+  cursor: pointer;
+
+  .iconWrapper {
+    $size: 12rem;
+    width: fit-content;
+    border-radius: 100vw;
+
+    overflow: hidden;
+
+    .iconContainer {
+      display: grid;
+      width: $size;
+      height: $size;
+      place-items: center;
+      border-radius: 100vw;
+
+      background: white;
+      // prettier-ignore
+      box-shadow: 
+          inset 0 8px 0px #00000025,
+          0 8px 0px blue;
+
+      padding: 2rem;
+
+      svg {
+        scale: 1.5;
+      }
+    }
+  }
+}
+
+// prettier-ignore
+.rock, .paper, .scissors {
+  border: 1.5rem solid transparent;
+}
+
+.rock {
+  background: linear-gradient($rock-gradient) border-box;
+  box-shadow: 0 8px hsl(349, 60%, 40%);
+
+}
+
+.paper {
+  background: linear-gradient($paper-gradient) border-box;
+  box-shadow: 0 8px hsl(230, 50%, 50%);
+}
+
+.scissors {
+  background: linear-gradient($scissors-gradient) border-box;
+  box-shadow: 0 8px hsl(30, 90%, 40%);
 }
 
 // * rules button

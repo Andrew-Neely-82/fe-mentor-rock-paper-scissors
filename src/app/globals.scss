@@ -1,0 +1,45 @@
+$bg-main: hsl(214, 47%, 23%), hsl(237, 49%, 15%);
+
+* {
+  box-sizing: border-box;
+  font: inherit;
+}
+
+body {
+  margin: 0;
+  height: 100svh;
+  color: white;
+  background: radial-gradient($bg-main);
+}
+
+// prettier-ignore
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+ol,
+ul {
+  list-style: non;
+}
+
+p {
+  max-width: 75ch;
+  text-wrap: pretty;
+}
+
+img {
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  shape-margin: 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :has(:target) {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--scroll-padding);
+  }
+}

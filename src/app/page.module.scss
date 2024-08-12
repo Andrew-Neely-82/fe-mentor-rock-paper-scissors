@@ -11,9 +11,17 @@ $dark-text: hsl(229, 25%, 31%);
 $score-text: hsl(229, 64%, 46%);
 $header-outline: hsl(217, 16%, 45%);
 
+// * Media queries
+$desktop: 1366px;
+$mobile: 50rem;
+
 .main {
+  position: relative;
   display: grid;
   place-items: center;
+  max-width: $desktop;
+  height: 100%;
+  margin: auto;
 }
 
 .scoreboardContainer {
@@ -25,5 +33,34 @@ $header-outline: hsl(217, 16%, 45%);
     width: min-content;
     line-height: 1.75rem;
     margin: 0;
+  }
+}
+
+// * rules button
+
+.footer {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+
+  @media screen and (max-width: $mobile) {
+    position: absolute;
+    inset: auto auto 2rem auto;
+  }
+
+  .footerButton {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 2rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 150ms ease;
+
+    &:hover {
+      background: white;
+      color: $dark-text;
+    }
   }
 }

@@ -10,15 +10,13 @@ const Home = () => {
 
   const updateScore = (win: boolean) => {
     setScore((prev) => {
-      const newScore = win ? prev + 1 : prev > 0 ? prev - 1 : prev;
-      return newScore;
+      return win ? prev + 1 : prev > 0 ? prev - 1 : prev;
     });
   };
 
   const isWinner = (player1: string, player2: string) => {
-    interface Choices {
-      [key: string]: string;
-    }
+    // prettier-ignore
+    interface Choices { [key: string]: string; }
     const choices: Choices = { rock: "rock", paper: "paper", scissors: "scissors" };
 
     const winningOptions: [string, string][] = [
@@ -27,47 +25,37 @@ const Home = () => {
       [choices.paper, choices.rock],
     ];
 
-    if (player1 === player2) {
-      setResult("DRAW");
-      return "Draw";
-    }
+    if (player1 === player2) return setResult("DRAW");
 
     const isPlayer1Winner = winningOptions.some(([winner, loser]) => player1 === winner && player2 === loser);
+    updateScore(isPlayer1Winner);
 
     const winner = isPlayer1Winner ? player1 : player2;
-    const resultMessage = isPlayer1Winner ? "YOU WIN" : "YOU LOSE";
-
-    updateScore(isPlayer1Winner);
-    setResult(resultMessage);
+    isPlayer1Winner ? setResult("YOU WIN") : setResult("YOU LOSE");
 
     return winner;
   };
 
-  const handleWin = () => {
-    const player1 = "rock";
-    const player2 = "scissors";
-    const winner = isWinner(player1, player2);
-  };
-
-  const handleLose = () => {
-    const player1 = "rock";
-    const player2 = "scissors";
-    const winner = isWinner(player2, player1);
-  };
-
-  const handleDraw = () => {
-    const player1 = "rock";
-    const player2 = "scissors";
-    const winner = isWinner(player1, player1);
-  };
+  const handleWin = () => isWinner("rock", "scissors");
+  const handleLose = () => isWinner("scissors", "rock");
+  const handleDraw = () => isWinner("rock", "rock");
+  const handleResetScore = () => setScore(0);
 
   return (
     <main className={styles.main}>
       <ScoreBoard score={score} />
       <p>{result}</p>
-      <button onClick={handleWin}>Win Test</button>
-      <button onClick={handleDraw}>Draw Test</button>
-      <button onClick={handleLose}>Lose Test</button>
+      {/* <div>
+        <button onClick={handleWin}>Win Test</button>
+        <button onClick={handleDraw}>Draw Test</button>
+        <button onClick={handleLose}>Lose Test</button>
+        <button onClick={handleResetScore}>Reset Test</button>
+      </div> */}
+      
+
+      <footer className={styles.footer}>
+        <button className={styles.footerButton}>RULES</button>
+      </footer>
     </main>
   );
 };

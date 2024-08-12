@@ -5,14 +5,16 @@ $bg-main: ellipse at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%);
 * {
   font-family: "Barlow Semi Condensed", sans-serif;
   font-style: normal;
+  font-weight: 600;
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
   height: 100svh;
   color: white;
   background: radial-gradient($bg-main);
+  padding: 2rem;
+  margin: 0;
 }
 
 // prettier-ignore

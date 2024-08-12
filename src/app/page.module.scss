@@ -15,3 +15,15 @@ $header-outline: hsl(217, 16%, 45%);
   display: grid;
   place-items: center;
 }
+
+.scoreboardContainer {
+  border: 2px solid $header-outline;
+  border-radius: 1rem;
+  padding: 1.5rem;
+
+  .title {
+    width: min-content;
+    line-height: 1.75rem;
+    margin: 0;
+  }
+}

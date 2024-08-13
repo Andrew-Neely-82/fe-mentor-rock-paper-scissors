@@ -11,6 +11,7 @@ const Home = () => {
   const [score, setScore] = useState<number>(0);
   const [result, setResult] = useState<string | null>(null);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const [playerChoice, setPlayerChoice] = useState<string | null>(null);
 
   const updateScore = (win: boolean) => {
     setScore((prev) => {
@@ -40,35 +41,44 @@ const Home = () => {
     return winner;
   };
 
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
+  const handleChoice = (choice: string) => {
+    setPlayerChoice(choice);
+    const computer = computerChoice();
+    isWinner(choice, computer);
+  };
 
-  const handleWin = () => isWinner("rock", "scissors");
-  const handleLose = () => isWinner("scissors", "rock");
-  const handleDraw = () => isWinner("rock", "rock");
-  const handleResetScore = () => setScore(0);
+  const computerChoice = () => {
+    const choices = ["rock", "paper", "scissors"];
+    const randomNumber = Math.floor(Math.random() * 3);
+    return choices[randomNumber];
+  };
+
+  const functions = { openModal: () => setModalOpen(true), closeModal: () => setModalOpen(false), handlePlayAgain: () => setPlayerChoice(null) };
 
   return (
     <>
       <main className={classNames(styles.main, isModalOpen ? styles.modalOpen : "")}>
         <ScoreBoard score={score} />
-        {/* <GameBoard /> */}
+        {playerChoice ? (
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span>{result}</span>
+            <button style={{ width: "fit-content" }} onClick={functions.handlePlayAgain}>
+              PLAY AGAIN
+            </button>
+          </div>
+        ) : (
+          <GameBoard onChoice={handleChoice} />
+        )}
         <footer className={styles.footer}>
-          <button className={styles.footerButton} onClick={openModal}>
+          <button className={styles.footerButton} onClick={functions.openModal}>
             RULES
           </button>
         </footer>
-        {/* <div>
-          <button onClick={handleWin}>Win Test</button>
-          <button onClick={handleDraw}>Draw Test</button>
-          <button onClick={handleLose}>Lose Test</button>
-          <button onClick={handleResetScore}>Reset Test</button>
-        </div> */}
       </main>
       {isModalOpen && (
-        <div className={styles.modalBackdrop} onClick={closeModal}>
+        <div className={styles.modalBackdrop}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <Rules closeModal={closeModal} />
+            <Rules closeModal={functions.closeModal} />
           </div>
         </div>
       )}

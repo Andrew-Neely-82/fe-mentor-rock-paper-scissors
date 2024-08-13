@@ -1,5 +1,6 @@
 "use client";
 
+import Rules from "./components/modal/Rules";
 import GameBoard from "./components/scoreBoard/gameBoard/GameBoard";
 import ScoreBoard from "./components/scoreBoard/ScoreBoard";
 import styles from "./page.module.scss";
@@ -8,6 +9,7 @@ import { useState } from "react";
 const Home = () => {
   const [score, setScore] = useState<number>(0);
   const [result, setResult] = useState<string | null>(null);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
   const updateScore = (win: boolean) => {
     setScore((prev) => {
@@ -37,6 +39,9 @@ const Home = () => {
     return winner;
   };
 
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
   const handleWin = () => isWinner("rock", "scissors");
   const handleLose = () => isWinner("scissors", "rock");
   const handleDraw = () => isWinner("rock", "rock");
@@ -45,7 +50,6 @@ const Home = () => {
   return (
     <main className={styles.main}>
       <ScoreBoard score={score} />
-      {/* <p>{result}</p> */}
       {/* <div>
         <button onClick={handleWin}>Win Test</button>
         <button onClick={handleDraw}>Draw Test</button>
@@ -53,9 +57,11 @@ const Home = () => {
         <button onClick={handleResetScore}>Reset Test</button>
       </div> */}
       <GameBoard />
-
+      {isModalOpen && <Rules closeModal={closeModal} />}
       <footer className={styles.footer}>
-        <button className={styles.footerButton}>RULES</button>
+        <button className={styles.footerButton} onClick={openModal}>
+          RULES
+        </button>
       </footer>
     </main>
   );

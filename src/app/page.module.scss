@@ -23,15 +23,38 @@ $mobile: 50rem;
 }
 
 .scoreboardContainer {
+  display: flex;
+  justify-content: space-between;
   height: fit-content;
   border: 2px solid $header-outline;
   border-radius: 1rem;
   padding: 1.5rem;
 
   .title {
+    font-size: 2.5rem;
     width: min-content;
-    line-height: 1.75rem;
+    line-height: 2rem;
     margin: 0;
+  }
+
+  .scoreContainer {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 3rem;
+    border-radius: 0.25rem;
+
+    .scoreText {
+      color: $score-text;
+    }
+
+    .scoreTally {
+      color: $dark-text;
+      font-size: 4rem;
+      line-height: 0.9;
+    }
   }
 }
 
@@ -72,7 +95,6 @@ $mobile: 50rem;
   border: none;
   background: none;
   padding: 2px;
-  cursor: pointer;
 
   .iconWrapper {
     $size: 12rem;
@@ -111,7 +133,6 @@ $mobile: 50rem;
 .rock {
   background: linear-gradient($rock-gradient) border-box;
   box-shadow: 0 8px hsl(349, 60%, 40%);
-
 }
 
 .paper {
@@ -143,7 +164,7 @@ $mobile: 50rem;
     border-radius: 0.5rem;
     padding: 0.5rem 2rem;
     letter-spacing: 2px;
-    cursor: pointer;
+
     transition: 150ms ease;
 
     &:hover {
@@ -152,3 +173,33 @@ $mobile: 50rem;
     }
   }
 }
+
+// * Rules Modal
+.modalWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+
+  h2 {
+    color: $dark-text;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 3rem;
+  }
+
+  button {
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+}
+
+// * Custom

@@ -43,6 +43,10 @@ img {
   shape-margin: 1rem;
 }
 
+button {
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :has(:target) {
     scroll-behavior: smooth;

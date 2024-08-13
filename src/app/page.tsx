@@ -75,13 +75,7 @@ const Home = () => {
           </button>
         </footer>
       </main>
-      {isModalOpen && (
-        <div className={styles.modalBackdrop}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <Rules closeModal={functions.closeModal} />
-          </div>
-        </div>
-      )}
+      {isModalOpen && <Rules closeModal={functions.closeModal} />}
     </>
   );
 };

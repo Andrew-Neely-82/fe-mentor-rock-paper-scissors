@@ -1,5 +1,6 @@
 "use client";
 
+import classNames from "classnames";
 import Rules from "./components/modal/Rules";
 import GameBoard from "./components/scoreBoard/gameBoard/GameBoard";
 import ScoreBoard from "./components/scoreBoard/ScoreBoard";
@@ -48,22 +49,30 @@ const Home = () => {
   const handleResetScore = () => setScore(0);
 
   return (
-    <main className={styles.main}>
-      <ScoreBoard score={score} />
-      {/* <div>
-        <button onClick={handleWin}>Win Test</button>
-        <button onClick={handleDraw}>Draw Test</button>
-        <button onClick={handleLose}>Lose Test</button>
-        <button onClick={handleResetScore}>Reset Test</button>
-      </div> */}
-      <GameBoard />
-      {isModalOpen && <Rules closeModal={closeModal} />}
-      <footer className={styles.footer}>
-        <button className={styles.footerButton} onClick={openModal}>
-          RULES
-        </button>
-      </footer>
-    </main>
+    <>
+      <main className={classNames(styles.main, isModalOpen ? styles.modalOpen : "")}>
+        <ScoreBoard score={score} />
+        {/* <GameBoard /> */}
+        <footer className={styles.footer}>
+          <button className={styles.footerButton} onClick={openModal}>
+            RULES
+          </button>
+        </footer>
+        {/* <div>
+          <button onClick={handleWin}>Win Test</button>
+          <button onClick={handleDraw}>Draw Test</button>
+          <button onClick={handleLose}>Lose Test</button>
+          <button onClick={handleResetScore}>Reset Test</button>
+        </div> */}
+      </main>
+      {isModalOpen && (
+        <div className={styles.modalBackdrop} onClick={closeModal}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <Rules closeModal={closeModal} />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

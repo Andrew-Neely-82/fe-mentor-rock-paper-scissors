@@ -9,11 +9,15 @@ interface RulesProps { closeModal: () => void; }
 const Rules: React.FC<RulesProps> = ({ closeModal }) => {
   return (
     <div className={styles.modalWrapper}>
-      <h2>RULES</h2>
-      <RulesIcon />
-      <button onClick={closeModal}>
-        <CloseIcon />
-      </button>
+      <div>
+        <h2>RULES</h2>
+        <button onClick={closeModal}>
+          <CloseIcon />
+        </button>
+      </div>
+      <div>
+        <RulesIcon />
+      </div>
     </div>
   );
 };

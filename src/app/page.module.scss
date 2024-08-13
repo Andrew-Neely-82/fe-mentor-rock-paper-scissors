@@ -18,23 +18,41 @@ $mobile: 50rem;
 .main {
   display: grid;
   grid-template-rows: repeat(2, auto);
+  justify-items: center;
   max-width: $desktop;
+  min-width: 100%;
   margin: auto;
 }
 
 .scoreboardContainer {
   display: flex;
   justify-content: space-between;
+  width: calc(50% + 6rem);
+  min-width: 38rem;
   height: fit-content;
   border: 2px solid $header-outline;
   border-radius: 1rem;
   padding: 1.5rem;
+  margin: auto;
+
+  @media screen and (max-width: $mobile) {
+    min-width: calc(100% - 4rem);
+    width: 100%;
+    max-width: calc(100% - 2rem);
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    padding: 1rem;
+  }
 
   .title {
     font-size: 2.5rem;
     width: min-content;
     line-height: 2rem;
     margin: 0;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 1.5rem;
+    }
   }
 
   .scoreContainer {
@@ -46,6 +64,10 @@ $mobile: 50rem;
     padding: 1rem 3rem;
     border-radius: 0.25rem;
 
+    @media screen and (max-width: $mobile) {
+      padding: 1rem 2.5rem;
+    }
+
     .scoreText {
       color: $score-text;
     }
@@ -54,6 +76,11 @@ $mobile: 50rem;
       color: $dark-text;
       font-size: 4rem;
       line-height: 0.9;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 3rem;
+        font-weight: 700;
+      }
     }
   }
 }
@@ -175,31 +202,63 @@ $mobile: 50rem;
 }
 
 // * Rules Modal
-.modalWrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  border-radius: 0.5rem;
-  padding: 2rem;
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  transition: 250ms ease all;
 
-  h2 {
-    color: $dark-text;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 3rem;
-  }
+  .modalContent {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+    z-index: 1010;
 
-  button {
-    position: absolute;
-    top: 2.5rem;
-    right: 2.5rem;
-    background: none;
-    border: none;
-    padding: 0;
+    .modalWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      width: 26rem;
+      padding: 2rem;
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h2 {
+          display: inline;
+          color: $dark-text;
+          font-size: 2rem;
+          font-weight: 700;
+          margin: 0;
+        }
+
+        button {
+          display: grid;
+          place-items: center;
+          background: none;
+          border: none;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      div:last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }
-
-// * Custom

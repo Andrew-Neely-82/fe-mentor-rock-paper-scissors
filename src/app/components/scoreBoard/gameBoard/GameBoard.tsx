@@ -1,18 +1,21 @@
+import React from 'react';
+import getConfig from 'next/config';
 import styles from "../../../page.module.scss";
-import React from "react";
 import Icon from "../icon/Icon";
 
-// prettier-ignore
 interface GameBoardProps { onChoice: (choice: string) => void; }
 
-const iconImg = {
-  paperSrc: "/svg/icon-paper.svg",
-  scissorsSrc: "/svg/icon-scissors.svg",
-  rockSrc: "/svg/icon-rock.svg",
-  triangleSrc: "/svg/bg-triangle.svg",
-};
-
 const GameBoard: React.FC<GameBoardProps> = ({ onChoice }) => {
+  const config = getConfig();
+  const basePath = config?.publicRuntimeConfig?.basePath || '';
+
+  const iconImg = {
+    paperSrc: `${basePath}/svg/icon-paper.svg`,
+    scissorsSrc: `${basePath}/svg/icon-scissors.svg`,
+    rockSrc: `${basePath}/svg/icon-rock.svg`,
+    triangleSrc: `${basePath}/svg/bg-triangle.svg`,
+  };
+
   const iconProps = {
     paper: { src: iconImg.paperSrc, alt: "paper", buttonClass: styles.paper, value: "paper", onClick: onChoice },
     scissors: { src: iconImg.scissorsSrc, alt: "scissors", buttonClass: styles.scissors, value: "scissors", onClick: onChoice },

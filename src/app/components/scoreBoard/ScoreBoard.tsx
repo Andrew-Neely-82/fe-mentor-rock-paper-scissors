@@ -10,7 +10,6 @@ const ScoreBoard: React.FC<ScoreBoardProps> = ({ score }) => {
       <h1 className={styles.title}>ROCK PAPER SCISSORS</h1>
       <div className={styles.scoreContainer}>
         <span className={styles.scoreText}>SCORE</span>
-        {/* change with a useState in page.tsx */}
         <span className={styles.scoreTally}>{score}</span>
       </div>
     </div>

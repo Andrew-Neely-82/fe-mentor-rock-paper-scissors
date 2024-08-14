@@ -209,7 +209,9 @@ $mobile: 50rem;
 
   @media screen and (max-width: $mobile) {
     position: absolute;
-    inset: auto auto 2rem auto;
+    bottom: 3rem;
+    right: 50%;
+    transform: translate(50%);
   }
 
   .footerButton {
@@ -217,8 +219,8 @@ $mobile: 50rem;
     color: white;
     border: 1px solid white;
     border-radius: 0.5rem;
-    padding: 0.5rem 2rem;
-    letter-spacing: 2px;
+    padding: 0.75rem 2.5rem;
+    letter-spacing: 3px;
 
     transition: 150ms ease;
 

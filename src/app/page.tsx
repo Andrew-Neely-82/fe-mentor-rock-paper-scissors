@@ -1,6 +1,7 @@
 "use client";
 
 import { ScoreBoard, GameBoard, Footer, Rules } from "./components/export";
+import Step2 from "./components/scoreBoard/gameBoard/Step2";
 import styles from "./page.module.scss";
 import classNames from "classnames";
 import { useState } from "react";
@@ -10,6 +11,7 @@ const Home = () => {
   const [result, setResult] = useState<string | null>(null);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [playerChoice, setPlayerChoice] = useState<string | null>(null);
+  const [houseChoice, setHouseChoice] = useState<string | null>(null);
 
   const updateScore = (win: boolean) => {
     setScore((prev) => (win ? prev + 1 : prev > 0 ? prev - 1 : prev));
@@ -33,6 +35,12 @@ const Home = () => {
     return isPlayer1Winner ? player1 : player2;
   };
 
+  const computerChoice = (): string => {
+    const choice = ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
+    setHouseChoice(choice);
+    return choice;
+  };
+
   const handleChoice = (choice: string) => {
     setPlayerChoice(choice);
     const computer = computerChoice();
@@ -41,24 +49,22 @@ const Home = () => {
 
   const handlePlayAgain = () => {
     setPlayerChoice(null);
+    setHouseChoice(null);
     setResult(null);
   };
 
-  const computerChoice = () => ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
+  console.log(playerChoice, houseChoice);
 
   return (
     <>
       <main className={classNames(styles.main, isModalOpen ? styles.modalOpen : "")}>
         <ScoreBoard score={score} />
         {playerChoice ? (
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <span>{result}</span>
-            <button style={{ width: "fit-content" }} onClick={handlePlayAgain}>
-              PLAY AGAIN
-            </button>
-          </div>
+          <>
+            <Step2 player={playerChoice} house={houseChoice} result={result} onClick={handlePlayAgain} />
+          </>
         ) : (
-          <GameBoard key={playerChoice ? "played" : "new"} onChoice={handleChoice} />
+          <GameBoard key={playerChoice} onChoice={handleChoice} />
         )}
         <Footer onClick={() => setModalOpen(true)} />
       </main>

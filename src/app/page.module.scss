@@ -133,6 +133,60 @@ $mobile: 50rem;
   }
 }
 
+// * comparison
+
+.comparison {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  .youPicked,
+  .housePicked {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .btn:first {
+      animation: scaleUp 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    }
+
+    .btn {
+      position: relative;
+      user-select: none;
+    }
+
+    .iconBg {
+      position: absolute;
+      top: 3rem;
+      margin: auto;
+      background: $score-text;
+      filter: brightness(0.25);
+      opacity: 0.25;
+      height: 9rem;
+      width: 9rem;
+      border-radius: 100vw;
+      z-index: -100;
+    }
+  }
+
+  .youPicked {
+    .btn {
+      -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+      animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+      animation-delay: 0.5s;
+    }
+  }
+
+  .housePicked {
+    .btn {
+      -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+      animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+      animation-delay: 1.5s;
+    }
+  }
+}
+
 // * Choice Icons
 
 .btn {
@@ -145,14 +199,13 @@ $mobile: 50rem;
     $size: 9rem;
     width: fit-content;
     border-radius: 100vw;
-
     overflow: hidden;
 
     .iconContainer {
       display: grid;
+      place-items: center;
       width: $size;
       height: $size;
-      place-items: center;
       border-radius: 100vw;
 
       background: white;
@@ -166,11 +219,13 @@ $mobile: 50rem;
       @media screen and (max-width: $mobile) {
         width: calc($size - 3rem);
         height: calc($size - 3rem);
-        padding: 1.75rem;
+        padding: 0.25rem;
       }
 
-      img {
-        width: 4rem;
+      svg {
+        @media screen and (max-width: $mobile) {
+          width: 2.5rem;
+        }
       }
     }
   }
@@ -217,7 +272,7 @@ $mobile: 50rem;
   .footerButton {
     background: transparent;
     color: white;
-    border: 1px solid white;
+    border: 2px solid $header-outline;
     border-radius: 0.5rem;
     padding: 0.75rem 2.5rem;
     letter-spacing: 3px;
@@ -311,5 +366,16 @@ $mobile: 50rem;
         align-items: center;
       }
     }
+  }
+}
+
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }

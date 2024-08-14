@@ -13,6 +13,6 @@ module.exports = {
     return config;
   },
   publicRuntimeConfig: {
-    basePath: isProd ? '/my-nextjs-project' : '',
+    basePath: isProd ? '/fe-mentor-rock-paper-scissors' : '',
   },
 };

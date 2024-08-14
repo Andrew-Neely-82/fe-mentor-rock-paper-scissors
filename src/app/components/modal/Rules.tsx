@@ -1,6 +1,6 @@
 import RulesIcon from "@/../public/image-rules.svg";
 import CloseIcon from "@/../public/icon-close.svg";
-import styles from "@/app/page.module.scss";
+import styles from "@/app/styles/rules.module.scss";
 import React from "react";
 
 // prettier-ignore

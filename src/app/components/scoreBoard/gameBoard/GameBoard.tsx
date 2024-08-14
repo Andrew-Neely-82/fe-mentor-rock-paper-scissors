@@ -1,6 +1,5 @@
 import { Scissors, Triangle, Paper, Rock } from "../../../../../public/svg/export";
-
-import styles from "../../../page.module.scss";
+import styles from "@/app/styles/page.module.scss";
 import React from "react";
 import Icon from "../icon/Icon";
 

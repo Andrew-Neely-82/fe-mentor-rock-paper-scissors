@@ -1,7 +1,8 @@
 import { Paper, Rock, Scissors } from "../../../../../public/svg/export";
-import styles from "@/app/page.module.scss";
+import styles from "@/app/styles/page.module.scss";
 import Icon from "../icon/Icon";
 import React from "react";
+import classNames from "classnames";
 
 interface Step2Props {
   player: string | null;
@@ -21,18 +22,18 @@ const Step2: React.FC<Step2Props> = ({ player, house, result, onClick }) => {
 
   return (
     <div className={styles.comparison}>
-      <div className={styles.youPicked}>
+      <div className={classNames(styles.youPicked, result === "YOU WIN" ? styles.win : "")}>
         <span>YOU PICKED</span>
         <Icon {...propsPicker(player)} className={styles.first} />
         <div className={styles.iconBg}></div>
       </div>
-      <div>
+      <div className={styles.playAgain}>
         <span>{result}</span>
         <button style={{ width: "fit-content" }} onClick={onClick}>
           PLAY AGAIN
         </button>
       </div>
-      <div className={styles.housePicked}>
+      <div className={classNames(styles.housePicked, result === "YOU LOSE" ? styles.lose : "")}>
         <span>THE HOUSE PICKED</span>
         <Icon {...propsPicker(house)} className={styles.second} />
         <div className={styles.iconBg}></div>

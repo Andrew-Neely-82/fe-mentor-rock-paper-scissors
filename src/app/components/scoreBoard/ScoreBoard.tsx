@@ -1,6 +1,5 @@
-import { LogoSVG } from "../../../../public/svg/export";
-
-import styles from "../../page.module.scss";
+import styles from "@/app/styles/scoreboard.module.scss";
+import { LogoSVG } from "@/../public/svg/export";
 import React from "react";
 
 // prettier-ignore

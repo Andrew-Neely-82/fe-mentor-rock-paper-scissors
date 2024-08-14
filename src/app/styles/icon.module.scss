@@ -1,0 +1,69 @@
+@import "./variables";
+@import "./mixins";
+
+// * Choice Icons
+
+.btn {
+  border-radius: 100vw;
+  border: none;
+  background: none;
+  padding: 2px;
+
+  .iconWrapper {
+    $size: 9rem;
+    width: fit-content;
+    border-radius: 100vw;
+    overflow: hidden;
+
+    .iconContainer {
+      @include gridCenter;
+      width: $size;
+      height: $size;
+      border-radius: 100vw;
+
+      background: white;
+      // prettier-ignore
+      box-shadow: 
+          inset 0 8px 0px #00000025,
+          0 8px 0px blue;
+
+      padding: 2rem;
+
+      @media screen and (max-width: $mobile) {
+        width: calc($size - 3rem);
+        height: calc($size - 3rem);
+        padding: 0.25rem;
+      }
+
+      svg {
+        @media screen and (max-width: $mobile) {
+          width: 2.5rem;
+        }
+      }
+    }
+  }
+}
+
+// prettier-ignore
+.rock, .paper, .scissors {
+  border: 1.5rem solid transparent;
+
+  @media screen and (max-width: $mobile) {
+    border: 0.75rem solid transparent;
+  }
+}
+
+.rock {
+  background: linear-gradient($rock-gradient) border-box;
+  box-shadow: 0 8px hsl(349, 60%, 40%);
+}
+
+.paper {
+  background: linear-gradient($paper-gradient) border-box;
+  box-shadow: 0 8px hsl(230, 50%, 50%);
+}
+
+.scissors {
+  background: linear-gradient($scissors-gradient) border-box;
+  box-shadow: 0 8px hsl(30, 90%, 40%);
+}

@@ -1,0 +1,32 @@
+@import "./variables";
+
+// * rules button
+
+.footer {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+
+  @media screen and (max-width: $mobile) {
+    position: absolute;
+    bottom: 3rem;
+    right: 50%;
+    transform: translate(50%);
+  }
+
+  .footerButton {
+    background: transparent;
+    color: white;
+    border: 2px solid $header-outline;
+    border-radius: 0.5rem;
+    padding: 0.75rem 2.5rem;
+    letter-spacing: 3px;
+
+    transition: 150ms ease;
+
+    &:hover {
+      background: white;
+      color: $dark-text;
+    }
+  }
+}

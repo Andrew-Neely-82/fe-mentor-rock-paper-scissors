@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "../../../page.module.scss";
+import styles from "@/app/styles/page.module.scss";
 import classNames from "classnames";
+import React from "react";
 
 interface IconProps {
   src?: React.ComponentType<React.SVGProps<SVGSVGElement>>;

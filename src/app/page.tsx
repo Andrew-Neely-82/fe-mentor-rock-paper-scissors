@@ -2,7 +2,7 @@
 
 import { ScoreBoard, GameBoard, Footer, Rules } from "./components/export";
 import Step2 from "./components/scoreBoard/gameBoard/Step2";
-import styles from "./page.module.scss";
+import styles from "./styles/page.module.scss";
 import classNames from "classnames";
 import { useState } from "react";
 
@@ -13,8 +13,14 @@ const Home = () => {
   const [playerChoice, setPlayerChoice] = useState<string | null>(null);
   const [houseChoice, setHouseChoice] = useState<string | null>(null);
 
-  const updateScore = (win: boolean) => {
-    setScore((prev) => (win ? prev + 1 : prev > 0 ? prev - 1 : prev));
+  const updateScore = (result: string | null) => {
+    setTimeout((e: any) => {
+      if (result === "YOU WIN") {
+        setScore((prev) => prev + 1);
+      } else if (result === "YOU LOSE") {
+        setScore((prev) => (prev > 0 ? prev - 1 : prev));
+      }
+    }, 2500);
   };
 
   const isWinner = (player1: string, player2: string) => {
@@ -27,10 +33,11 @@ const Home = () => {
     ];
 
     const isPlayer1Winner = winningOptions.some(([winner, loser]) => player1 === winner && player2 === loser);
-    updateScore(isPlayer1Winner);
 
-    if (player1 === player2) return setResult("DRAW");
-    setResult(isPlayer1Winner ? "YOU WIN" : "YOU LOSE");
+    const result = player1 === player2 ? "DRAW" : isPlayer1Winner ? "YOU WIN" : "YOU LOSE";
+
+    setResult(result);
+    updateScore(result);
 
     return isPlayer1Winner ? player1 : player2;
   };

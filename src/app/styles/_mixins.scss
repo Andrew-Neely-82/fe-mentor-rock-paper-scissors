@@ -1,0 +1,20 @@
+@mixin gridCenter {
+  display: grid;
+  place-items: center;
+}
+
+@mixin gridCols($cols, $space) {
+  display: grid;
+  grid-template-columns: repeat($cols, $space);
+}
+
+@mixin gridRows($rows, $space) {
+  display: grid;
+  grid-template-rows: repeat($rows, $space);
+}
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

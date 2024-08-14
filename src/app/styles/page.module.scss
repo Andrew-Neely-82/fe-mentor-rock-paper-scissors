@@ -1,0 +1,112 @@
+@import "./variables";
+@import "./icon.module.scss";
+@import "./mixins";
+
+.main {
+  @include gridRows(2, auto);
+  justify-items: center;
+  max-width: $desktop;
+  min-width: 100%;
+  margin: auto;
+}
+
+// * GameBoard
+
+.gameBoard {
+  @include flexCenter;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  margin: auto;
+  margin-top: 4.5rem;
+
+  .topChoices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    width: 40rem;
+
+    @media screen and (max-width: $mobile) {
+      width: 20rem;
+    }
+  }
+
+  .svgContainer {
+    position: absolute;
+    // inset: auto;
+    top: calc(50% + 2rem);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -10;
+
+    @media screen and (max-width: $mobile) {
+      top: calc(50% + 1.5rem);
+
+      svg {
+        width: 14rem;
+      }
+    }
+  }
+}
+
+// * comparison
+
+.comparison {
+  @include gridCols(3, 1fr);
+
+  .youPicked,
+  .housePicked {
+    position: relative;
+    @include flexCenter;
+    flex-direction: column;
+
+    .btn:first {
+      animation: scaleUp 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    }
+
+    .btn {
+      position: relative;
+      user-select: none;
+    }
+
+    .iconBg {
+      position: absolute;
+      top: 3rem;
+      margin: auto;
+      background: $score-text;
+      filter: brightness(0.25);
+      opacity: 0.25;
+      height: 9rem;
+      width: 9rem;
+      border-radius: 100vw;
+      z-index: -100;
+    }
+  }
+
+  .youPicked {
+    .btn {
+      animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+      animation-delay: 0.5s;
+    }
+  }
+
+  .housePicked {
+    .btn {
+      animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+      animation-delay: 1.5s;
+    }
+  }
+
+  .playAgain {
+    @include flexCenter;
+    flex-direction: column;
+    animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    animation-delay: 2.5s;
+  }
+}
+
+// prettier-ignore
+@keyframes scale-up-center {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}

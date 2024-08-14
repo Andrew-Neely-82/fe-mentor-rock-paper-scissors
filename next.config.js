@@ -1,8 +1,8 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  basePath: isProd ? '/my-nextjs-project' : '',
-  assetPrefix: isProd ? '/my-nextjs-project/' : '',
+  basePath: isProd ? '/fe-mentor-rock-paper-scissors' : '',
+  assetPrefix: isProd ? '/fe-mentor-rock-paper-scissors/' : '',
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

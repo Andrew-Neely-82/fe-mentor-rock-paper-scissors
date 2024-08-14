@@ -1,10 +1,8 @@
 "use client";
 
-import classNames from "classnames";
-import Rules from "./components/modal/Rules";
-import GameBoard from "./components/scoreBoard/gameBoard/GameBoard";
-import ScoreBoard from "./components/scoreBoard/ScoreBoard";
+import { ScoreBoard, GameBoard, Footer, Rules } from "./components/export";
 import styles from "./page.module.scss";
+import classNames from "classnames";
 import { useState } from "react";
 
 const Home = () => {
@@ -30,12 +28,12 @@ const Home = () => {
       [choices.paper, choices.rock],
     ];
 
-    if (player1 === player2) return setResult("DRAW");
-
     const isPlayer1Winner = winningOptions.some(([winner, loser]) => player1 === winner && player2 === loser);
     updateScore(isPlayer1Winner);
 
     const winner = isPlayer1Winner ? player1 : player2;
+
+    if (player1 === player2) return setResult("DRAW");
     isPlayer1Winner ? setResult("YOU WIN") : setResult("YOU LOSE");
 
     return winner;
@@ -47,11 +45,7 @@ const Home = () => {
     isWinner(choice, computer);
   };
 
-  const computerChoice = () => {
-    const choices = ["rock", "paper", "scissors"];
-    const randomNumber = Math.floor(Math.random() * 3);
-    return choices[randomNumber];
-  };
+  const computerChoice = () => ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
 
   const functions = { openModal: () => setModalOpen(true), closeModal: () => setModalOpen(false), handlePlayAgain: () => setPlayerChoice(null) };
 
@@ -69,11 +63,7 @@ const Home = () => {
         ) : (
           <GameBoard onChoice={handleChoice} />
         )}
-        <footer className={styles.footer}>
-          <button className={styles.footerButton} onClick={functions.openModal}>
-            RULES
-          </button>
-        </footer>
+        <Footer onClick={functions.openModal} />
       </main>
       {isModalOpen && <Rules closeModal={functions.closeModal} />}
     </>

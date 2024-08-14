@@ -1,24 +1,33 @@
-import Scissors from "../../../../../public/svg/icon-scissors.svg";
-import Triangle from "../../../../../public/svg/bg-triangle.svg";
-import Paper from "../../../../../public/svg/icon-paper.svg";
-import Rock from "../../../../../public/svg/icon-rock.svg";
 import styles from "../../../page.module.scss";
 import React from "react";
 import Icon from "../icon/Icon";
-import classNames from "classnames";
+
 // prettier-ignore
 interface GameBoardProps { onChoice: (choice: string) => void; }
 
+const iconImg = {
+  paperSrc: "/svg/icon-paper.svg",
+  scissorsSrc: "/svg/icon-scissors.svg",
+  rockSrc: "/svg/icon-rock.svg",
+  triangleSrc: "/svg/bg-triangle.svg",
+};
+
 const GameBoard: React.FC<GameBoardProps> = ({ onChoice }) => {
+  const iconProps = {
+    paper: { src: iconImg.paperSrc, alt: "paper", buttonClass: styles.paper, value: "paper", onClick: onChoice },
+    scissors: { src: iconImg.scissorsSrc, alt: "scissors", buttonClass: styles.scissors, value: "scissors", onClick: onChoice },
+    rock: { src: iconImg.rockSrc, alt: "rock", buttonClass: styles.rock, value: "rock", onClick: onChoice },
+  };
+
   return (
     <div className={styles.gameBoard}>
       <div className={styles.topChoices}>
-        <Icon src={Paper} alt="paper" buttonClass={styles.paper} value="paper" onClick={onChoice} />
-        <Icon src={Scissors} alt="scissors" buttonClass={styles.scissors} value="scissors" onClick={onChoice} />
+        <Icon {...iconProps.paper} />
+        <Icon {...iconProps.scissors} />
       </div>
-      <Icon src={Rock} alt="rock" iconClass={styles.rock} value="rock" onClick={onChoice} />
+      <Icon {...iconProps.rock} />
       <div className={styles.svgContainer}>
-        <Triangle />
+        <img src={iconImg.triangleSrc} alt="triangle" />
       </div>
     </div>
   );

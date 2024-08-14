@@ -1,5 +1,6 @@
 import styles from "../../../page.module.scss";
 import classNames from "classnames";
+import Image from "next/image";
 import React from "react";
 
 // prettier-ignore
@@ -10,7 +11,7 @@ const Icon: React.FC<IconProps> = ({ src, alt, buttonClass, iconClass, value, on
     <button className={classNames(styles.btn, buttonClass)} onClick={() => onClick(value)} value={value}>
       <div className={classNames(styles.iconWrapper, iconClass)}>
         <div className={styles.iconContainer}>
-          <img src={src} alt={alt} aria-label={alt} />
+          <Image src={src} alt={alt} aria-label={alt} unoptimized loading="lazy" width={0} height={0}/>
         </div>
       </div>
     </button>

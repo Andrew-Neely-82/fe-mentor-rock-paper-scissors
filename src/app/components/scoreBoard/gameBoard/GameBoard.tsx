@@ -6,8 +6,8 @@ import Icon from "../icon/Icon";
 interface GameBoardProps { onChoice: (choice: string) => void; }
 
 const GameBoard: React.FC<GameBoardProps> = ({ onChoice }) => {
-  const { publicRuntimeConfig } = getConfig();
-  const basePath = publicRuntimeConfig?.basePath || '';
+  const config = getConfig();
+  const basePath = config?.publicRuntimeConfig?.basePath || '';
 
   const iconImg = {
     paperSrc: `${basePath}/svg/icon-paper.svg`,

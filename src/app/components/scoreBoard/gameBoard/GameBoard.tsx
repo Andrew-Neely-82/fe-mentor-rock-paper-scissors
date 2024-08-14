@@ -1,3 +1,7 @@
+import RockIcon from "@/../public/icon-rock.svg";
+import PaperIcon from "@/../public/icon-paper.svg";
+import ScissorsIcon from "@/../public/icon-scissors.svg";
+import TriangleIcon from "@/../public/bg-triangle.svg";
 import styles from "../../../page.module.scss";
 import Icon from "../icon/Icon";
 import React from "react";
@@ -6,17 +10,10 @@ import React from "react";
 interface GameBoardProps { onChoice: (choice: string) => void; }
 
 const GameBoard: React.FC<GameBoardProps> = ({ onChoice }) => {
-  const iconImg = {
-    paperSrc: "/icon-paper.svg",
-    scissorsSrc: `/icon-scissors.svg`,
-    rockSrc: `/icon-rock.svg`,
-    triangleSrc: `/bg-triangle.svg`,
-  };
-
   const iconProps = {
-    paper: { src: iconImg.paperSrc, alt: "paper", buttonClass: styles.paper, value: "paper", onClick: onChoice },
-    scissors: { src: iconImg.scissorsSrc, alt: "scissors", buttonClass: styles.scissors, value: "scissors", onClick: onChoice },
-    rock: { src: iconImg.rockSrc, alt: "rock", buttonClass: styles.rock, value: "rock", onClick: onChoice },
+    paper: { src: PaperIcon, alt: "paper", buttonClass: styles.paper, value: "paper", onClick: onChoice },
+    scissors: { src: ScissorsIcon, alt: "scissors", buttonClass: styles.scissors, value: "scissors", onClick: onChoice },
+    rock: { src: RockIcon, alt: "rock", buttonClass: styles.rock, value: "rock", onClick: onChoice },
   };
 
   return (
@@ -27,7 +24,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ onChoice }) => {
       </div>
       <Icon {...iconProps.rock} />
       <div className={styles.svgContainer}>
-        <img src={iconImg.triangleSrc} alt="triangle" />
+        <TriangleIcon />
       </div>
     </div>
   );

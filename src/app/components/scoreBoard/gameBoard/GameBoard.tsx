@@ -9,11 +9,17 @@ import React from "react";
 // prettier-ignore
 interface GameBoardProps { onChoice: (choice: string) => void; }
 
+const iconPaths = {
+  rock: "/icon-rock.svg",
+  paper: "/icon-paper.svg",
+  scissors: "/icon-scissors.svg",
+};
+
 const GameBoard: React.FC<GameBoardProps> = ({ onChoice }) => {
   const iconProps = {
-    paper: { src: PaperIcon, alt: "paper", buttonClass: styles.paper, value: "paper", onClick: onChoice },
-    scissors: { src: ScissorsIcon, alt: "scissors", buttonClass: styles.scissors, value: "scissors", onClick: onChoice },
-    rock: { src: RockIcon, alt: "rock", buttonClass: styles.rock, value: "rock", onClick: onChoice },
+    rock: { src: iconPaths.rock, alt: "rock", buttonClass: styles.rock, value: "rock", onClick: onChoice },
+    paper: { src: iconPaths.paper, alt: "paper", buttonClass: styles.paper, value: "paper", onClick: onChoice },
+    scissors: { src: iconPaths.scissors, alt: "scissors", buttonClass: styles.scissors, value: "scissors", onClick: onChoice },
   };
 
   return (
@@ -24,7 +30,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ onChoice }) => {
       </div>
       <Icon {...iconProps.rock} />
       <div className={styles.svgContainer}>
-        <TriangleIcon />
+        <img src="/bg-triangle.svg" />
       </div>
     </div>
   );

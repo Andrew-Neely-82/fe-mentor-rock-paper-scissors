@@ -12,15 +12,11 @@ const Home = () => {
   const [playerChoice, setPlayerChoice] = useState<string | null>(null);
 
   const updateScore = (win: boolean) => {
-    setScore((prev) => {
-      return win ? prev + 1 : prev > 0 ? prev - 1 : prev;
-    });
+    setScore((prev) => (win ? prev + 1 : prev > 0 ? prev - 1 : prev));
   };
 
   const isWinner = (player1: string, player2: string) => {
-    // prettier-ignore
-    interface Choices { [key: string]: string; }
-    const choices: Choices = { rock: "rock", paper: "paper", scissors: "scissors" };
+    const choices = { rock: "rock", paper: "paper", scissors: "scissors" };
 
     const winningOptions: [string, string][] = [
       [choices.rock, choices.scissors],
@@ -31,12 +27,10 @@ const Home = () => {
     const isPlayer1Winner = winningOptions.some(([winner, loser]) => player1 === winner && player2 === loser);
     updateScore(isPlayer1Winner);
 
-    const winner = isPlayer1Winner ? player1 : player2;
-
     if (player1 === player2) return setResult("DRAW");
-    isPlayer1Winner ? setResult("YOU WIN") : setResult("YOU LOSE");
+    setResult(isPlayer1Winner ? "YOU WIN" : "YOU LOSE");
 
-    return winner;
+    return isPlayer1Winner ? player1 : player2;
   };
 
   const handleChoice = (choice: string) => {
@@ -45,9 +39,12 @@ const Home = () => {
     isWinner(choice, computer);
   };
 
-  const computerChoice = () => ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
+  const handlePlayAgain = () => {
+    setPlayerChoice(null);
+    setResult(null);
+  };
 
-  const functions = { openModal: () => setModalOpen(true), closeModal: () => setModalOpen(false), handlePlayAgain: () => setPlayerChoice(null) };
+  const computerChoice = () => ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
 
   return (
     <>
@@ -56,16 +53,16 @@ const Home = () => {
         {playerChoice ? (
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span>{result}</span>
-            <button style={{ width: "fit-content" }} onClick={functions.handlePlayAgain}>
+            <button style={{ width: "fit-content" }} onClick={handlePlayAgain}>
               PLAY AGAIN
             </button>
           </div>
         ) : (
-          <GameBoard onChoice={handleChoice} />
+          <GameBoard key={playerChoice ? "played" : "new"} onChoice={handleChoice} />
         )}
-        <Footer onClick={functions.openModal} />
+        <Footer onClick={() => setModalOpen(true)} />
       </main>
-      {isModalOpen && <Rules closeModal={functions.closeModal} />}
+      {isModalOpen && <Rules closeModal={() => setModalOpen(false)} />}
     </>
   );
 };

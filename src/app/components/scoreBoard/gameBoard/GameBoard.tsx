@@ -1,20 +1,20 @@
-import RockIcon from "@/../public/icon-rock.svg";
-import PaperIcon from "@/../public/icon-paper.svg";
-import ScissorsIcon from "@/../public/icon-scissors.svg";
+import { Scissors, Triangle, Paper, Rock } from "../../../../../public/svg/export";
+
 import styles from "../../../page.module.scss";
-import Icon from "../icon/Icon";
 import React from "react";
-import Image from "next/image";
+import Icon from "../icon/Icon";
 
 // prettier-ignore
 interface GameBoardProps { onChoice: (choice: string) => void; }
 
 const GameBoard: React.FC<GameBoardProps> = ({ onChoice }) => {
   const iconProps = {
-    paper: { src: '/icon-paper.svg', alt: "paper", buttonClass: styles.paper, value: "paper", onClick: onChoice },
-    scissors: { src: '/icon-scissors.svg', alt: "scissors", buttonClass: styles.scissors, value: "scissors", onClick: onChoice },
-    rock: { src: '/icon-rock.svg', alt: "rock", buttonClass: styles.rock, value: "rock", onClick: onChoice },
+    paper: { src: Paper, alt: "paper", buttonClass: styles.paper, value: "paper", onClick: onChoice },
+    scissors: { src: Scissors, alt: "scissors", buttonClass: styles.scissors, value: "scissors", onClick: onChoice },
+    rock: { src: Rock, alt: "rock", buttonClass: styles.rock, value: "rock", onClick: onChoice },
   };
+
+  const TriangleBg = (props: React.SVGProps<SVGSVGElement>) => <Triangle />;
 
   return (
     <div className={styles.gameBoard}>
@@ -24,8 +24,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ onChoice }) => {
       </div>
       <Icon {...iconProps.rock} />
       <div className={styles.svgContainer}>
-        {/* <TriangleIcon aria-label="triangle" />  */}
-        <Image unoptimized src={"/bg-triangle.svg"} width={500} height={500} alt="" />
+        <TriangleBg className={styles.test} />
       </div>
     </div>
   );

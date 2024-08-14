@@ -1,3 +1,5 @@
+import { LogoSVG } from "../../../../public/svg/export";
+
 import styles from "../../page.module.scss";
 import React from "react";
 
@@ -5,9 +7,11 @@ import React from "react";
 interface ScoreBoardProps { score: number; }
 
 const ScoreBoard: React.FC<ScoreBoardProps> = ({ score }) => {
+  const Logo = (props: React.SVGProps<SVGSVGElement>) => <LogoSVG />;
+
   return (
     <div className={styles.scoreboardContainer}>
-      <h1 className={styles.title}>ROCK PAPER SCISSORS</h1>
+      <Logo>ROCK PAPER SCISSORS</Logo>
       <div className={styles.scoreContainer}>
         <span className={styles.scoreText}>SCORE</span>
         <span className={styles.scoreTally}>{score}</span>
